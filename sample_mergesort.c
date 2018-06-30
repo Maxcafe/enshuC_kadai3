@@ -35,63 +35,22 @@ int temp[NUM_ITEMS];
 
 int main()
 {
-  int i, j;
-  int fd[2];
-  int pid, status;
+  int i;
 
   //seed random number generator
   srand(getpid());
 
   //fill array with random integers
-  for (i = 0; i < NUM_ITEMS; i++) numbers[i] = rand();
-
-  if (pipe(fd) == -1) {
-    perror("pipe failed.");
-    exit(1);
-  }
-
-  if ((pid=fork())== -1) {
-    perror("fork failed.");
-    exit(1);
-  }
-
-  if(pid == 0) {
-    close(fd[0]);
-    for(i=0;i<(NUM_ITEMS/2 + NUM_ITEMS%2);i++) {  //後ろ半分を前に持ってくる
-      numbers[i] = numbers[i+NUM_ITEMS/2];
-    }
-    mergeSort(numbers, temp, NUM_ITEMS/2 + NUM_ITEMS%2);
-    for(j=0;j<(NUM_ITEMS/2 + NUM_ITEMS%2);j++) { //親プロセスに送信
-      if(write(fd[1], &numbers[j], sizeof(int)) == -1) {
-        perror("pipe write.");
-        exit(1);
-      }
-    }
-    exit(0);
-  }
-  else {
-    close(fd[1]);
-    mergeSort(numbers, temp, NUM_ITEMS/2);
-    for(j=0;j<(NUM_ITEMS/2 + NUM_ITEMS%2);j++) {  //子プロセスから受信
-      if(read(fd[0], &temp[j], sizeof(int)) == -1) {
-        perror("pipe read.");
-        exit(1);
-      }
-    }
-    for(i=0;i<(NUM_ITEMS/2 + NUM_ITEMS%2);i++) {
-      numbers[i+NUM_ITEMS/2] = temp[i];
-    }
-    merge(numbers, temp, 0, NUM_ITEMS/2, NUM_ITEMS-1);
-  }
+  for (i = 0; i < NUM_ITEMS; i++)
+    numbers[i] = rand();
 
   //perform merge sort on array
-
+  mergeSort(numbers, temp, NUM_ITEMS);
 
   printf("Done with sort.\n");
 
-  for (i = 0; i < NUM_ITEMS; i++) {
+  for (i = 0; i < NUM_ITEMS; i++)
     printf("%i\n", numbers[i]);
-  }
 
   return 0;
 }
