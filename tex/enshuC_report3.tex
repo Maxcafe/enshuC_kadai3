@@ -1,0 +1,125 @@
+\documentclass[a4j]{jarticle}
+
+%% "%:"から始まる行を書くと「タグ行」として扱われる。Command+2でタグ行を挿入
+
+\usepackage{mediabb} % pdfファイル挿入用
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{ascmac}
+\usepackage{here}
+\usepackage{itembkbx}
+\usepackage{subfigure} % for subfigure
+
+\newenvironment{ite}{\begin{itemize}}{\end{itemize}} %箇条書き
+\newenvironment{tab}{\begin{table}}{\end{table}} %表
+\newenvironment{cen}{\begin{center}}{\end{center}} %中央揃え
+\newenvironment{tabu}{\begin{tabular}}{\end{tabular}} %表
+\newenvironment{bbox}{\begin{breakbox}}{\end{breakbox}} %四角囲い付け
+\newenvironment{scr}{\begin{breakscreen}}{\end{breakscreen}} %丸囲い付け
+\newenvironment{bit}{\begin{breakitembox}}{\end{breakitembox}} %囲い付き箇条書き, [c]等必要, {}に題名
+\newenvironment{fig}{\begin{figure}}{\end{figure}} %図
+\newenvironment{enu}{\begin{enumerate}}{\end{enumerate}} %箇条書き(数字)
+\newenvironment{des}{\begin{description}}{\end{description}} %箇条書き(文字)
+\newenvironment{bib}{\begin{thebibliography}}{\end{thebibliography}} %参考文献
+\newcommand{\cirnum}[1]{\raise0.2ex\hbox{\textcircled{\scriptsize{#1}}}} %丸数字
+\newcommand{\ma}{main関数}
+\newcommand{\mo}{move関数}
+\newcommand{\pa}{path\_print関数}
+\newcommand{\pai}{paint関数}
+
+% 講義・演習名
+\newcommand{\lectureName}{情報科学演習C}
+% レポートの回数
+\newcommand{\reportNumber}{3}
+% レポートのタイトル
+\newcommand{\reportTitle}{マルチプロセス処理}
+% 教員名
+\newcommand{\teacherName}{小島 英春，内山 彰 教員}
+% 課題締め切り日
+\newcommand{\deadline}{2018年7月2日(月) 12:59}
+
+% 提出者名
+\newcommand{\studentName}{川上 遼太}
+% 提出者所属
+\newcommand{\studentAff}{基礎工学部 情報科学科 計算機科学コース 3年}
+% 提出者学籍番号
+\newcommand{\studentID}{09B16022}
+% 提出者電子メールアドレス
+\newcommand{\studentEmail}{u407773h@ecs.osaka-u.ac.jp}
+% 課題提出日
+\newcommand{\submitted}{2018年7月1日(日)}
+
+
+\begin{document}
+
+%Title page start
+\begin{titlepage}
+\mbox{\vspace{10cm}}
+
+\begin{center}
+{\Huge\bfseries
+\lectureName \\
+第\reportNumber{}回レポート} \\
+\vspace{1cm}
+{\Large \reportTitle}
+\vspace{5cm}
+
+{\large
+\begin{tabular}{rcl}
+担当教員 & : & \teacherName \\
+提出者   & : & \studentName \\
+所属/学年   & : & \studentAff\\
+学籍番号 & : & \studentID \\
+電子メール & : & \texttt{\studentEmail}\\
+\\
+提出日 & : & \submitted \\
+締切日 & : & \deadline
+\end{tabular}
+}
+\end{center}
+\end{titlepage}
+%Title page end
+
+\tableofcontents
+\newpage
+
+\section{}
+
+
+\appendix % appendixは、「これ以降は付録」ということを表す
+\section{section name}
+
+
+
+\end{document}
+
+
+%%%%%%%%%%%% 図 %%%%%%%%%%%%
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=.65\textwidth]{.eps}
+% \caption{図の名称}
+% \label{fig:}
+% \end{figure}
+%
+%%%%%%%%%%%% 表 %%%%%%%%%%%%
+% \begin{tab}[H]
+% \centering
+% \begin{tabu}{|c|c|l|}
+% \hline
+% \multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} \\
+% \hline
+%  &  &  \\
+%  &  &  \\
+%  &  &  \\
+%  &  &  \\
+% \hline
+% \end{tabu}
+% \caption{表の名称}
+% \label{tab:}
+% \end{tab}
+
+% 表がはみ出た時
+% http://www.inashiro.com/2011/02/11/latex-intro-7/
+% \scalebox{0.6}[0.8]{
+% }
